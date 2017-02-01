@@ -1,8 +1,13 @@
 package com.example.anthonydelarosa.senior_design;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Display;
+import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -40,6 +45,13 @@ public class HomePage extends AppCompatActivity {
                 .setObject(object)
                 .setActionStatus(Action.STATUS_TYPE_COMPLETED)
                 .build();
+    }
+    public void toSettings(View view){
+        Intent next = new Intent(this, Settings.class);
+        startActivity(next);
+    }
+    public void EndApp(View view){
+        finish();
     }
 
     @Override
