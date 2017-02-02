@@ -14,4 +14,13 @@
         <item>Super Strong</item>
     </string-array>
 
+    <color name="white">#FFFFFF</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="pink">#FFF1F1</color>
+    <color name="peach">#FFCC88</color>
+    <color name="darkpink">#FFDDDD</color>
+    <color name="theme01">#FFF1F1</color>
+    <color name="theme02">#FFCC88</color>
+    <color name="theme03">#FFDDDD</color>
+
 </resources>
