@@ -19,8 +19,16 @@
     <color name="pink">#FFF1F1</color>
     <color name="peach">#FFCC88</color>
     <color name="darkpink">#FFDDDD</color>
+    <color name="darkred">#55AA0000</color>
+    <color name="darkblue">#AA000011</color>
     <color name="theme01">#FFF1F1</color>
     <color name="theme02">#FFCC88</color>
     <color name="theme03">#FFDDDD</color>
+    <color name="theme04">#88FF88</color>
+
+    <string name="date">00:00:00:00</string>
+    <string name="tea">Tea</string>
+    <string name="strength">Strength</string>
+
 
 </resources>

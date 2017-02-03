@@ -13,6 +13,7 @@
 
     <Button
         android:text="Start Brewing"
+        android:textColor="@android:color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Start"
@@ -24,6 +25,7 @@
 
     <Button
         android:text="Quit"
+        android:textColor="@android:color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Quit"
@@ -34,26 +36,62 @@
         android:layout_alignParentEnd="true"
         android:onClick="EndApp"/>
 
+    <TextView
+        android:text="Tea Backlog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textColor="@android:color/black"
+        android:layout_below="@+id/Quit"/>
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/Quit">
+        android:layout_below="@+id/textView2"
+        android:background="@color/darkblue">
 
         <TableRow
+            android:id = "@+id/table_row1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
+
             <TextView
-                android:text="Tea Backlog"
+                android:text="@string/tea"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/teaType"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                android:textSize="24sp"
+                android:textColor="@android:color/holo_green_light"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:gravity="left"/>
+
+            <TextView
+                android:text="@string/strength"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/strengthType"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                android:textSize="24sp"
+                android:textColor="@android:color/holo_orange_light" />
+
+            <TextView
+                android:text="@string/date"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/textView2"
+                android:id="@+id/time_left"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-                android:textAlignment="center"
                 android:textSize="24sp"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/white"
+                android:gravity="right"/>
         </TableRow>
     </ScrollView>
 
