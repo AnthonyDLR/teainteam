@@ -1,5 +1,6 @@
 package com.example.anthonydelarosa.senior_design;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.CountDownTimer;
@@ -9,6 +10,7 @@ import android.view.Display;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.appindexing.Action;
@@ -27,6 +29,8 @@ public class HomePage extends AppCompatActivity {
      */
     private GoogleApiClient client;
     TextView dateType;
+    CounterClass timer;
+    boolean accessed = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,21 +38,14 @@ public class HomePage extends AppCompatActivity {
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
 
-        Bundle extras = getIntent().getExtras();
-        String myEtText;
-        TextView strengthType = (TextView) findViewById(R.id.strengthType);
-        TextView teaType = (TextView) findViewById(R.id.teaType);
-        dateType = (TextView) findViewById(R.id.time_left);
-        if (extras != null) {
-            myEtText = extras.getString("strength");
-            strengthType.setText(myEtText);
-            myEtText = extras.getString("tea");
-            teaType.setText(myEtText);
-            long myEtLong = extras.getLong("date");
-            final CounterClass timer = new CounterClass(myEtLong, 1000);
-            timer.start();
-
-        }
+        Button start = (Button) findViewById(R.id.Start);
+        start.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent next = new Intent(getApplicationContext(),Settings.class);
+                startActivityForResult(next,1000);
+            }
+        });
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
     public class CounterClass extends CountDownTimer{
@@ -59,7 +56,8 @@ public class HomePage extends AppCompatActivity {
         @Override
         public void onTick(long millisUntilFinished){
             long millis = millisUntilFinished;
-            String hms = String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(millis),
+            String hms = String.format("%02d:%02d:%02d:%02d", TimeUnit.MILLISECONDS.toDays(millis),
+                    TimeUnit.MILLISECONDS.toHours(millis)-TimeUnit.DAYS.toHours(TimeUnit.MILLISECONDS.toDays(millis)),
                     TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)),
                     TimeUnit.MILLISECONDS.toSeconds((millis)) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
             dateType.setText(hms);
@@ -70,6 +68,43 @@ public class HomePage extends AppCompatActivity {
             dateType.setText("00:00:00");
         }
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        System.out.println(resultCode);
+        System.out.println("IM HERE!!!!");
+        if(requestCode == 1000){
+            if (resultCode == RESULT_OK){
+                System.out.println("IN 1000 *********");
+                Bundle extras = data.getExtras();
+                String myEtText;
+                TextView strengthType = (TextView) findViewById(R.id.strengthType);
+                TextView teaType = (TextView) findViewById(R.id.teaType);
+                dateType = (TextView) findViewById(R.id.time_left);
+                if (extras != null) {
+                    myEtText = extras.getString("strength");
+                    strengthType.setText(myEtText);
+                    myEtText = extras.getString("tea");
+                    teaType.setText(myEtText);
+                    long myEtLong = extras.getLong("date");
+                    System.out.println(myEtLong);
+                    if(accessed){
+                        timer.cancel();
+                        timer = new CounterClass(myEtLong, 1000);
+                    }
+                    else{
+                        timer = new CounterClass(myEtLong, 1000);
+                        accessed = true;
+                    }
+                    timer.start();
+
+                }
+            }
+            if (requestCode == Activity.RESULT_CANCELED){
+
+            }
+        }
     }
 
     /**

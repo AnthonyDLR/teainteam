@@ -1,5 +1,6 @@
 package com.example.anthonydelarosa.senior_design;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.support.v7.app.AppCompatActivity;
@@ -39,7 +40,7 @@ public class Settings extends AppCompatActivity {
 
         TimePicker timePicker = (TimePicker) findViewById(R.id.time_picker);
         long hour = timePicker.getCurrentHour();
-        long min = timePicker.getCurrentMinute() + 1;
+        long min = timePicker.getCurrentMinute();
 
 
         Date date = new Date();
@@ -103,7 +104,7 @@ public class Settings extends AppCompatActivity {
 
         //next.putExtra("date" , String.format("%02d:%02d:%02d:%02d", hour, curr_hour, hour,hour));
         next.putExtra("date" , day + hour + min + curr_sec + year + mon);
-        startActivity(next);
+        setResult(Activity.RESULT_OK,next);
         finish();
     }
 }
