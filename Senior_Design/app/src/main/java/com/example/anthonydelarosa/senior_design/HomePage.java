@@ -11,6 +11,9 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.google.android.gms.appindexing.Action;
@@ -46,6 +49,8 @@ public class HomePage extends AppCompatActivity {
                 startActivityForResult(next,1000);
             }
         });
+
+
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
     public class CounterClass extends CountDownTimer{
@@ -69,6 +74,7 @@ public class HomePage extends AppCompatActivity {
         }
 
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -126,6 +132,10 @@ public class HomePage extends AppCompatActivity {
         Intent next = new Intent(this, Settings.class);
         startActivity(next);
         finish();
+    }
+
+    public void dialogbox(View view){
+        System.out.println("HI****");
     }
     public void EndApp(View view){
         finish();

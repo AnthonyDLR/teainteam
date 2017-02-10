@@ -6,10 +6,11 @@ import android.icu.util.Calendar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
-
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
@@ -22,9 +23,45 @@ public class Settings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        Button timedate = (Button) findViewById(R.id.toTime);
+        timedate.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent next = new Intent(getApplicationContext(),timedate.class);
+                startActivityForResult(next,2000);
+            }
+        });
     }
 
     public void startBrew(View view) {
+        Intent next = setSpinners();
+        //Later change this value depending on strength??
+        next.putExtra("date", TimeUnit.MINUTES.toMillis(5));
+        setResult(Activity.RESULT_OK,next);
+        finish();
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(requestCode == 2000){
+            if (resultCode == RESULT_OK){
+                Bundle extras = data.getExtras();
+                long myEtLong;
+                Intent next = setSpinners();
+                if (extras != null) {
+                    myEtLong = extras.getLong("date");
+                    next.putExtra("date",myEtLong);
+                    setResult(Activity.RESULT_OK, next);
+                    finish();
+                }
+            }
+            if (requestCode == Activity.RESULT_CANCELED) {
+
+            }
+
+        }
+    }
+
+    private Intent setSpinners(){
         Intent next = new Intent(this, HomePage.class);
         Spinner mySpinner = (Spinner) findViewById(R.id.spinner);
         String strength = mySpinner.getSelectedItem().toString();
@@ -32,79 +69,6 @@ public class Settings extends AppCompatActivity {
         Spinner teaSpinner = (Spinner) findViewById(R.id.spinner2);
         String tea = teaSpinner.getSelectedItem().toString();
         next.putExtra("tea" , tea);
-
-        DatePicker datePicker = (DatePicker) findViewById(R.id.date_picker);
-        long day = datePicker.getDayOfMonth();
-        long month = datePicker.getMonth() + 1;
-        long year = datePicker.getYear();
-
-        TimePicker timePicker = (TimePicker) findViewById(R.id.time_picker);
-        long hour = timePicker.getCurrentHour();
-        long min = timePicker.getCurrentMinute();
-
-
-        Date date = new Date();
-        long curr_year = date.getYear() + 1900;
-        long curr_month = date.getMonth() + 1;
-        long curr_day = date.getDate();
-        long curr_hour = date.getHours() + 1;
-        long curr_min = date.getMinutes();
-        long curr_sec = date.getSeconds();
-
-        year = curr_year - year;
-        TimeUnit.DAYS.toMillis(year * 365);
-
-        Set m30 = new HashSet<Integer>(Arrays.asList(4,6,9,11));
-        long mon = 0;
-        long curr_mon = 0;
-        if (curr_month != month){
-            for(int i = 1; i <= curr_month; i++){
-                if(i == 2){
-                    curr_mon += TimeUnit.DAYS.toMillis(28);
-                }
-                else if(m30.contains(i)){
-                    curr_mon += TimeUnit.DAYS.toMillis(31);
-                }
-                else{
-                    curr_mon += TimeUnit.DAYS.toMillis(30);
-                }
-
-            }
-            for(int i = 1; i <= month; i++){
-                if(i == 2){
-                    mon += TimeUnit.DAYS.toMillis(28);
-                }
-                else if(m30.contains(i)){
-                    mon += TimeUnit.DAYS.toMillis(31);
-                }
-                else{
-                    mon += TimeUnit.DAYS.toMillis(30);
-                }
-
-            }
-            mon = (mon - curr_mon)% TimeUnit.DAYS.toMillis(365);
-        }
-        else{month = 0;}
-
-        long day_mod = 28;
-        if(m30.contains(month)){
-            day_mod = 30;
-        }
-        else if(month != 2){
-            day_mod = 31;
-        }
-
-        day = TimeUnit.DAYS.toMillis(day - curr_day % day_mod);
-        hour =  TimeUnit.HOURS.toMillis((hour - curr_hour) % 24);
-        min =  TimeUnit.MINUTES.toMillis((min - curr_min) % 60);
-        curr_sec =  TimeUnit.SECONDS.toMillis(curr_sec);
-
-
-        //hour = (hour - curr_hour) % 24;
-
-        //next.putExtra("date" , String.format("%02d:%02d:%02d:%02d", hour, curr_hour, hour,hour));
-        next.putExtra("date" , day + hour + min + curr_sec + year + mon);
-        setResult(Activity.RESULT_OK,next);
-        finish();
+        return next;
     }
 }

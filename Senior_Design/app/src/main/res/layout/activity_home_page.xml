@@ -54,45 +54,71 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView2"
-        android:background="@color/darkblue">
+        android:background="@color/darkblue"
+        android:padding = "5dp">
 
-        <TableRow
+        <RelativeLayout
             android:id = "@+id/table_row1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-
-            <TextView
-                android:text="@string/tea"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/teaType"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-                android:textSize="24sp"
-                android:textColor="@android:color/holo_green_light"
-                android:paddingRight="10dp"
-                android:paddingLeft="10dp"
-                android:gravity="left"/>
-
-            <TextView
-                android:text="@string/strength"
-                android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TableRow
+                android:id = "@+id/table_row2"
                 android:layout_height="wrap_content"
-                android:id="@+id/strengthType"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-                android:textSize="24sp"
-                android:textColor="@android:color/holo_orange_light" />
-
-            <TextView
-                android:text="@string/date"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/time_left"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-                android:textSize="24sp"
-                android:textColor="@android:color/white"
-                android:gravity="right"/>
-        </TableRow>
+                android:layout_alignParentLeft = "true"
+                android:weightSum="100"
+                android:layout_gravity="end"
+                android:clickable="true"
+                android:onClick="dialogbox">
+
+                <HorizontalScrollView
+                    android:layout_height="wrap_content"
+                    android:id = "@+id/HSVtea"
+                    android:layout_weight="32"
+                    android:paddingRight="5dp">
+                    <TextView
+                        android:text="-"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/teaType"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                        android:textSize="24sp"
+                        android:textColor="@android:color/holo_green_light"
+                        android:paddingRight="10dp"
+                        />
+                </HorizontalScrollView>
+                <HorizontalScrollView
+                    android:layout_weight="38"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="5dp">
+                    <TextView
+                        android:text="-"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingRight="10dp"
+                        android:id="@+id/strengthType"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                        android:textSize="24sp"
+                        android:textColor="@android:color/holo_orange_light" />
+                </HorizontalScrollView>
+                <HorizontalScrollView
+                    android:id = "@+id/timer_scroll"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="5dp"
+                    android:layout_weight="30">
+                    <TextView
+                        android:text="@string/date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:id="@+id/time_left"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                        android:textSize="24sp"
+                        android:textColor="@android:color/white"
+                        />
+                </HorizontalScrollView>
+            </TableRow>
+        </RelativeLayout>
     </ScrollView>
 
 </RelativeLayout>

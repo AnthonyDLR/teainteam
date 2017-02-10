@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ScrollView01"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:background="@color/theme02">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_settings"
@@ -99,66 +100,38 @@
         </LinearLayout>
 
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/timetextlayout"
+
+        <TableRow
+            android:id = "@+id/table_row1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/theme02"
-            android:orientation="vertical"
-            android:layout_below="@+id/strengthlayout"
-            android:layout_marginBottom="0dp"
-            tools:context="com.example.anthonydelarosa.senior_design.Settings">
-        >
-            <TextView
-                android:text="Choose your date and time"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/textView5"
-                android:textSize="18sp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/strengthlayout"
+            >
+
+            <Button
+                android:text="Start Brewing Now"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Start"
+                android:layout_centerVertical="true"
                 android:layout_alignParentStart="true"
-                android:textAlignment="center"
-                android:paddingTop="10dp"
-                android:paddingBottom="0dp"
-                android:layout_gravity=""/>
-        </LinearLayout>
+                android:layout_alignParentEnd="true"
+                android:backgroundTint="@color/theme04"
+                android:layout_weight="1"
+                android:onClick="startBrew" />
 
-        <DatePicker
-            android:id="@+id/date_picker"
-            android:layout_width="match_parent"
-            android:calendarViewShown="true"
-            android:spinnersShown="false"
-            android:layout_weight="4"
-            android:layout_height="450dp"
-            android:layout_below="@+id/timetextlayout"
-            android:paddingBottom="10dp"
-            android:paddingTop="5dp"
-            android:background = "@color/theme02"
-            android:headerBackground="@color/theme03"
-            android:calendarTextColor="#000000"
+            <Button
+                android:text="Set time to Brew"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/toTime"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:backgroundTint="@color/theme04"
+                android:layout_weight="1" />
 
-            />
-        <TimePicker
-            android:id="@+id/time_picker"
-            android:layout_weight="4"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:timePickerMode= "spinner"
-            android:paddingBottom="20dp"
-            android:layout_below="@id/date_picker"
-            android:background="@color/theme02"/>
-
-        <Button
-            android:text="Start Brewing"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/Start"
-            android:layout_centerVertical="true"
-            android:layout_below="@id/time_picker"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:backgroundTint="@color/theme04"
-            android:onClick="startBrew" />
+        </TableRow>
 
 
     </RelativeLayout>
