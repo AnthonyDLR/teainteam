@@ -19,6 +19,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Settings extends AppCompatActivity {
 
+    Spinner mySpinner = (Spinner) findViewById(R.id.spinner);
+    Spinner teaSpinner = (Spinner) findViewById(R.id.spinner2);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +40,10 @@ public class Settings extends AppCompatActivity {
         //Later change this value depending on strength??
         next.putExtra("date", TimeUnit.MINUTES.toMillis(5));
         setResult(Activity.RESULT_OK,next);
+        ServiceHandler newService = new ServiceHandler();
+        String strength = mySpinner.getSelectedItem().toString();
+        String tea = teaSpinner.getSelectedItem().toString();
+        newService.connect(tea, strength);
         finish();
     }
 
@@ -63,10 +69,8 @@ public class Settings extends AppCompatActivity {
 
     private Intent setSpinners(){
         Intent next = new Intent(this, HomePage.class);
-        Spinner mySpinner = (Spinner) findViewById(R.id.spinner);
         String strength = mySpinner.getSelectedItem().toString();
         next.putExtra("strength" , strength);
-        Spinner teaSpinner = (Spinner) findViewById(R.id.spinner2);
         String tea = teaSpinner.getSelectedItem().toString();
         next.putExtra("tea" , tea);
         return next;

@@ -34,6 +34,8 @@ public class HomePage extends AppCompatActivity {
     TextView dateType;
     CounterClass timer;
     boolean accessed = false;
+    TextView strengthType = (TextView) findViewById(R.id.strengthType);
+    TextView teaType = (TextView) findViewById(R.id.teaType);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,8 +87,6 @@ public class HomePage extends AppCompatActivity {
                 System.out.println("IN 1000 *********");
                 Bundle extras = data.getExtras();
                 String myEtText;
-                TextView strengthType = (TextView) findViewById(R.id.strengthType);
-                TextView teaType = (TextView) findViewById(R.id.teaType);
                 dateType = (TextView) findViewById(R.id.time_left);
                 if (extras != null) {
                     myEtText = extras.getString("strength");
