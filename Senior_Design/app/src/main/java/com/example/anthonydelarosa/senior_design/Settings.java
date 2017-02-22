@@ -19,13 +19,15 @@ import java.util.concurrent.TimeUnit;
 
 public class Settings extends AppCompatActivity {
 
-    Spinner mySpinner = (Spinner) findViewById(R.id.spinner);
-    Spinner teaSpinner = (Spinner) findViewById(R.id.spinner2);
+    Spinner mySpinner;
+    Spinner teaSpinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         Button timedate = (Button) findViewById(R.id.toTime);
+        mySpinner = (Spinner) findViewById(R.id.spinner);
+        teaSpinner = (Spinner) findViewById(R.id.spinner2);
         timedate.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){

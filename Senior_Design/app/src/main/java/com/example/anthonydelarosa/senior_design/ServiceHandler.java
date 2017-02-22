@@ -13,8 +13,7 @@ import java.net.URL;
 public class ServiceHandler {
 
     StringBuilder sb = new StringBuilder();
-    String http = "http://10.0.2.2/";
-    HttpURLConnection urlConnection=null;
+    String http = "http://10.0.2.2 /";
 
     public ServiceHandler() {
     }
@@ -24,31 +23,33 @@ public class ServiceHandler {
     {
         try
         {
+
+            HttpURLConnection connection = null;
+
             URL url = new URL(http);
-            urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setDoOutput(true);
-            urlConnection.setRequestMethod("POST");
-            urlConnection.setUseCaches(false);
-            urlConnection.setConnectTimeout(10000);
-            urlConnection.setReadTimeout(10000);
-            urlConnection.setRequestProperty("Content-Type","application/json");
-
-            urlConnection.setRequestProperty("Host", "android.schoolportal.gr");
-            urlConnection.connect();
-
+            connection = (HttpURLConnection)url.openConnection();
+            connection.setDoOutput(true);
+            connection.setDoInput(true);
+            connection.setRequestMethod("POST");
+            connection.setUseCaches(false);
+            connection.setConnectTimeout(720000000);
+            connection.setReadTimeout(72000000);
+            System.out.println("GETS HERE 1");
+            connection.connect();
+            System.out.println("GETS HERE 2");
             //Create JSONObject here
             JSONObject jsonParam = new JSONObject();
             jsonParam.put("Tea", tea);
             jsonParam.put("Strength", strength);
             jsonParam.put("Date", "true");
-            OutputStreamWriter out = new   OutputStreamWriter(urlConnection.getOutputStream());
+            OutputStreamWriter out = new   OutputStreamWriter(connection.getOutputStream());
             out.write(jsonParam.toString());
             out.close();
 
-            int HttpResult =urlConnection.getResponseCode();
+            int HttpResult =connection.getResponseCode();
             if(HttpResult ==HttpURLConnection.HTTP_OK){
                 BufferedReader br = new BufferedReader(new InputStreamReader(
-                        urlConnection.getInputStream(),"utf-8"));
+                        connection.getInputStream(),"utf-8"));
                 String line = null;
                 while ((line = br.readLine()) != null) {
                     sb.append(line + "\n");
@@ -60,7 +61,7 @@ public class ServiceHandler {
             }
             else
             {
-                System.out.println(urlConnection.getResponseMessage());
+                System.out.println(connection.getResponseMessage());
             }
         }
         catch (MalformedURLException e)
@@ -80,8 +81,8 @@ public class ServiceHandler {
         }
         finally
         {
-            if(urlConnection!=null)
-                urlConnection.disconnect();
+            //if(urlConnection!=null)
+              //urlConnection.disconnect();
         }
     }
 
