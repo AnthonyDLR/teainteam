@@ -34,8 +34,6 @@ public class HomePage extends AppCompatActivity {
     TextView dateType;
     CounterClass timer;
     boolean accessed = false;
-    TextView strengthType = (TextView) findViewById(R.id.strengthType);
-    TextView teaType = (TextView) findViewById(R.id.teaType);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +78,8 @@ public class HomePage extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        TextView strengthType = (TextView) findViewById(R.id.strengthType);
+        TextView teaType = (TextView) findViewById(R.id.teaType);
         System.out.println(resultCode);
         System.out.println("IM HERE!!!!");
         if(requestCode == 1000){
