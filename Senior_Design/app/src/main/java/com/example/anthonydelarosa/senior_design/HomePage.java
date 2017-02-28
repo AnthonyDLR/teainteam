@@ -24,6 +24,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import java.sql.Time;
 import java.util.concurrent.TimeUnit;
 
+
 public class HomePage extends AppCompatActivity {
 
     /**
@@ -34,10 +35,14 @@ public class HomePage extends AppCompatActivity {
     TextView dateType;
     CounterClass timer;
     boolean accessed = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_home_page);
+        TextView strengthType;
+        TextView teaType;
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
 
@@ -49,6 +54,9 @@ public class HomePage extends AppCompatActivity {
                 startActivityForResult(next,1000);
             }
         });
+        strengthType = (TextView) findViewById(R.id.strengthType);
+        teaType = (TextView) findViewById(R.id.teaType);
+        registermessage();
 
 
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
@@ -161,4 +169,13 @@ public class HomePage extends AppCompatActivity {
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
     }
+
+    public void registermessage() {
+        TextView strengthType = (TextView) findViewById(R.id.strengthType);
+        TextView teaType = (TextView) findViewById(R.id.teaType);
+        strengthType.setText("-");
+        teaType.setText("-");
+    }
 }
+
+

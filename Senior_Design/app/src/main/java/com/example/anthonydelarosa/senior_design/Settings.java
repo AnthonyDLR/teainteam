@@ -71,6 +71,8 @@ public class Settings extends AppCompatActivity implements OnClickListener{
         // add click listener to Button "POST"
         btnPost.setOnClickListener(this);
         Button timedate = (Button) findViewById(R.id.toTime);
+        mySpinner = (Spinner) findViewById(R.id.spinner);
+        teaSpinner = (Spinner) findViewById(R.id.spinner2);
         timedate.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
