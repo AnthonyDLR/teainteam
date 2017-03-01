@@ -8,9 +8,12 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/bg"
     tools:context="com.example.anthonydelarosa.senior_design.HomePage">
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg"
+        android:scaleType="centerCrop"/>
     <Button
         android:text="Start Brewing"
         android:textColor="@android:color/white"
@@ -35,17 +38,6 @@
         android:layout_marginTop="13dp"
         android:layout_alignParentEnd="true"
         android:onClick="EndApp"/>
-
-    <TextView
-        android:text="Tea Backlog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textColor="@android:color/black"
-        android:layout_below="@+id/Quit"/>
 
 
     <ScrollView
@@ -120,5 +112,30 @@
             </TableRow>
         </RelativeLayout>
     </ScrollView>
+
+    <TextView
+        android:text="Tea Backlog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:layout_below="@+id/Quit"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text='The "Tea" In Team'
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
+        android:id="@+id/textView5"
+        android:textSize="30sp"
+        android:textColorLink="@android:color/black"
+        tools:textColor="@android:color/black"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/black" />
 
 </RelativeLayout>
