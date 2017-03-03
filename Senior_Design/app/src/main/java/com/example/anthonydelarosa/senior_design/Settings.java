@@ -1,5 +1,4 @@
 package com.example.anthonydelarosa.senior_design;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.icu.util.Calendar;
@@ -33,7 +32,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,7 +39,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.Activity;
-
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
@@ -98,7 +95,7 @@ public class Settings extends AppCompatActivity implements OnClickListener{
                 if (!validate())
                     Toast.makeText(getBaseContext(), "Enter some data!", Toast.LENGTH_LONG).show();
                 // call AsynTask to perform network operation on separate thread
-                new HttpAsyncTask(teaSpinner.getSelectedItem().toString(),mySpinner.getSelectedItem().toString()).execute("http://hmkcode.appspot.com/jsonservlet");
+                new HttpAsyncTask(teaSpinner.getSelectedItem().toString(),mySpinner.getSelectedItem().toString()).execute("http://a-pc.duckdns.org");
                 break;
         }
 
@@ -188,6 +185,7 @@ public class Settings extends AppCompatActivity implements OnClickListener{
         }
 
         // 11. return result
+        Log.i(result,"out");
         return result;
     }
 
@@ -200,7 +198,8 @@ public class Settings extends AppCompatActivity implements OnClickListener{
             return false;
     }
 
-    private class HttpAsyncTask extends AsyncTask<String, Void, String>{
+    private class HttpAsyncTask extends AsyncTask<String, Void, String>
+    {
         String myTea;
         String myStrength;
         public HttpAsyncTask(String tea, String strength)
@@ -235,7 +234,8 @@ public class Settings extends AppCompatActivity implements OnClickListener{
             return true;
     }
 
-    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
+    private static String convertInputStreamToString(InputStream inputStream) throws IOException
+    {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
         String line = "";
         String result = "";
@@ -244,8 +244,5 @@ public class Settings extends AppCompatActivity implements OnClickListener{
 
         inputStream.close();
         return result;
-
     }
-
-
 }

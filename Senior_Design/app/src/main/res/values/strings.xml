@@ -2,16 +2,17 @@
     <string name="app_name">Home Page</string>
 
     <string-array name="teas">
+        <item>Black</item>
         <item>Green</item>
-        <item>Passion Fruit</item>
+        <item>White</item>
         <item>Earl Grey</item>
-        <item>Rose</item>
+        <item>Hot Water</item>
     </string-array>
 
     <string-array name="strength">
+        <item>Light</item>
+        <item>Regular</item>
         <item>Strong</item>
-        <item>Very Strong</item>
-        <item>Super Strong</item>
     </string-array>
 
     <color name="white">#ffffff</color>
