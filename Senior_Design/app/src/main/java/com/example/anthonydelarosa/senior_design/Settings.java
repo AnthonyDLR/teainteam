@@ -47,7 +47,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 public class Settings extends AppCompatActivity implements OnClickListener{
     Tea tea;
     private GoogleApiClient client;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +83,10 @@ public class Settings extends AppCompatActivity implements OnClickListener{
     }
 
     public void onClick(View view) {
+        Bundle bundle = getIntent().getExtras();
+        String startAdress = "http://";
+        String ip = bundle.getString("stuff");
+        String send = startAdress + ip;
         Spinner mySpinner = (Spinner) findViewById(R.id.spinner);
         Spinner teaSpinner = (Spinner) findViewById(R.id.spinner2);
         Intent next = setSpinners();
@@ -95,7 +98,7 @@ public class Settings extends AppCompatActivity implements OnClickListener{
                 if (!validate())
                     Toast.makeText(getBaseContext(), "Enter some data!", Toast.LENGTH_LONG).show();
                 // call AsynTask to perform network operation on separate thread
-                new HttpAsyncTask(teaSpinner.getSelectedItem().toString(),mySpinner.getSelectedItem().toString()).execute("http://a-pc.duckdns.org");
+                new HttpAsyncTask(teaSpinner.getSelectedItem().toString(),mySpinner.getSelectedItem().toString()).execute(send);
                 break;
         }
 
@@ -133,7 +136,7 @@ public class Settings extends AppCompatActivity implements OnClickListener{
         return next;
     }
 
-    public static String POST(String url, Tea tea) {
+    public String POST(String url, Tea tea) {
         InputStream inputStream = null;
         String result = "";
         try {
@@ -147,9 +150,12 @@ public class Settings extends AppCompatActivity implements OnClickListener{
             String json = "";
 
             // 3. build jsonObject
+            Bundle bundle2 = getIntent().getExtras();
+            String password = bundle2.getString("stuff2");
             JSONObject jsonObject = new JSONObject();
             jsonObject.accumulate("tea", tea.getTea());
             jsonObject.accumulate("strength", tea.getStrength());
+            jsonObject.accumulate("key", password);
 
             // 4. convert JSONObject to JSON to String
             json = jsonObject.toString();

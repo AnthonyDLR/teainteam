@@ -50,7 +50,10 @@ public class HomePage extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                //Get the bundle
+                Bundle bundle = getIntent().getExtras();
                 Intent next = new Intent(getApplicationContext(),Settings.class);
+                next.putExtras(bundle);
                 startActivityForResult(next,1000);
             }
         });
@@ -58,8 +61,8 @@ public class HomePage extends AppCompatActivity {
         teaType = (TextView) findViewById(R.id.teaType);
         registermessage();
 
-
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
     }
     public class CounterClass extends CountDownTimer{
         public CounterClass(long millisInFuture, long countDownInterval){
